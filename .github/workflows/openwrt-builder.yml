@@ -52,7 +52,7 @@ jobs:
         curl -SLk --connect-timeout 30 --retry 2 "https://archive.openwrt.org/chaos_calmer/15.05.1/ar71xx/generic/OpenWrt-SDK-15.05.1-ar71xx-generic_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64.tar.bz2" -o "SDK.tar.bz2"
         tar xjf SDK.tar.bz2
 
-    - name: Clone source code
+    - name: Clone source code and build
       working-directory: /workdir
       run: |
         df -hT $PWD
@@ -87,5 +87,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
