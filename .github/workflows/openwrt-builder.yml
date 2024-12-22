@@ -23,6 +23,8 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
+permissions:
+  contents: write
 
 jobs:
   build:
