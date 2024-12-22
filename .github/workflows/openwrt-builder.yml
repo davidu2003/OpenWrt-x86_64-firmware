@@ -76,13 +76,8 @@ jobs:
         make package/luci-app-openclash/luci-app-openclash/compile V=99
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
 
-    - name: Check space usage
-      if: (!cancelled())
-      run: df -hT
-
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
