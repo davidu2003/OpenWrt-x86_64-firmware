@@ -75,6 +75,11 @@ jobs:
         cd ../..
         make package/luci-app-openclash/luci-app-openclash/compile V=99
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+    - name: Create tag
+      id: tag
+      run: |
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=status::success"
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
