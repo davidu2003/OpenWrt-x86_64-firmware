@@ -90,8 +90,9 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrtsdk/bin/targets/*/*
-        rm -rf packages
+        ls -l openwrtsdk/bin/ar71xx/packages/base
+        #cd openwrtsdk/bin/packages/base
+        #rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
