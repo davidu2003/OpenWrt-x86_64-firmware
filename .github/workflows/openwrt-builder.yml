@@ -74,6 +74,7 @@ jobs:
         popd
         cd ../..
         make package/luci-app-openclash/luci-app-openclash/compile V=99
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
 
     - name: Check space usage
       if: (!cancelled())
@@ -82,6 +83,6 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files:  openwrtsdk/bin/ar71xx/packages/base/luci-app-openclash_*-beta_all.ipk
+        files:  ${{ env.FIRMWARE }}/*
         draft: true
         fail_on_unmatched_files: true
